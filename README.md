@@ -23,3 +23,7 @@ save.ItemBatteryUpgrades.GunTranq.Count = 1;
 
 save.Save(); // save all your changes afterwards
 ```
+
+## Tags
+
+repo saves decryptor
