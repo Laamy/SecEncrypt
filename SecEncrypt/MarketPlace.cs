@@ -1,6 +1,6 @@
-﻿namespace encryptsex.Config;
+﻿namespace SecEncrypt;
 
-class MarketItem
+public class MarketItem
 {
     private SaveState saveState;
     private string itemName;
@@ -64,7 +64,7 @@ class MarketItem
 // for item and itemStatsBattery scroll to the very bottom
 
 //TODO: item registry i can inherit so i dont gotta redefine items constantly..
-class MarketPlace
+public class MarketPlace
 {
     private SaveState saveState;
     private string target;

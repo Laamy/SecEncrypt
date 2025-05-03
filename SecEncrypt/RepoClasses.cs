@@ -1,4 +1,4 @@
-﻿namespace encryptsex.Config;
+﻿namespace SecEncrypt;
 
 // i might make a use for this later..
 public enum itemType

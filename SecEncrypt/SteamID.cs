@@ -1,6 +1,6 @@
-﻿namespace encryptsex.Config;
+﻿namespace SecEncrypt;
 
-class SteamID
+public class SteamID
 {
     public string ID;
 

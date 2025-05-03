@@ -2,7 +2,7 @@
 
 using System;
 
-using encryptsex.Config;
+using SecEncrypt;
 
 class Program
 {
@@ -18,7 +18,6 @@ class Program
         var plyr = SteamID.Get("76561198930262816");
         var plyrStats = save.GetPlayer(plyr);
 
-        Console.WriteLine(save.Root);
         save.RunStats.Level = 12; // so i know whhat file i modified
 
         save.ItemsPurchasedTotal.GunTranq.Count = 3;

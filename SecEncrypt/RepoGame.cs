@@ -1,9 +1,9 @@
-﻿namespace encryptsex.Config;
+﻿namespace SecEncrypt;
 
 using System;
 using System.Collections.Generic;
 
-class RepoGame
+public class RepoGame
 {
     public static SaveState GetSave(string save_name) => SaveState.GetSave(save_name);
 

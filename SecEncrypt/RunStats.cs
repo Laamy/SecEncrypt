@@ -1,6 +1,6 @@
-﻿namespace encryptsex.Config;
+﻿namespace SecEncrypt;
 
-class RunStats
+public class RunStats
 {
     //{
     //  "runStats": {

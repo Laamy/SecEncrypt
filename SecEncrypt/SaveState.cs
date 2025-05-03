@@ -1,4 +1,4 @@
-﻿namespace encryptsex.Config;
+﻿namespace SecEncrypt;
 #pragma warning disable IDE0025
 
 using System;
@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 using Newtonsoft.Json;
 
-class SaveState
+public class SaveState
 {
     /* 
     "playerNames": {

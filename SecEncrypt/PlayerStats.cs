@@ -1,8 +1,8 @@
-﻿namespace encryptsex.Config;
+﻿namespace SecEncrypt;
 
 using System;
 
-class PlayerStats
+public class PlayerStats
 {
     private SaveState SaveState { get; set; }
     public SteamID Identifier { get; set; }
@@ -59,7 +59,8 @@ class PlayerStats
     /// </summary>
     public PlayerInventory GetInventory() => new(Identifier, SaveState);
 }
-class PlayerSlot
+
+public class PlayerSlot
 {
     private SaveState SaveState { get; set; }
     public SteamID Identifier { get; set; }
@@ -89,7 +90,8 @@ class PlayerSlot
         set => SaveState.Dictionaries.value[$"playerInventorySpot{SlotId}"][Identifier.ID] = value;
     }
 }
-class PlayerInventory
+
+public class PlayerInventory
 {
     private SaveState SaveState { get; set; }
     public SteamID Identifier { get; set; }
@@ -111,7 +113,8 @@ class PlayerInventory
         return new PlayerSlot(Identifier, SaveState, id);
     }
 }
-class PlayerUpgrades
+
+public class PlayerUpgrades
 {
     private SaveState SaveState { get; set; }
     public SteamID Identifier { get; set; }

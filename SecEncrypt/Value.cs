@@ -1,7 +1,7 @@
-﻿namespace encryptsex.Config;
+﻿namespace SecEncrypt;
 
 // TODO: alloww direct modifying of this
-class Value
+public class Value
 {
     /*"timePlayed": {
         "__type": "float",

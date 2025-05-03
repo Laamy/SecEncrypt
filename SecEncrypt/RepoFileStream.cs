@@ -1,9 +1,9 @@
-﻿namespace encryptsex.Config;
+﻿namespace SecEncrypt;
 
 using System.IO;
 using System.Text;
 
-class RepoFileStream
+public class RepoFileStream
 {
     private readonly FileInfo _filePath;
 

@@ -1,4 +1,4 @@
-﻿namespace encryptsex.Config;
+﻿namespace SecEncrypt;
 
 using System.IO;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System;
 
-class AESStream
+public class AESStream
 {
     private static string EncryptionKey = "Why would you want to cheat?... :o It's no fun. :') :'D";
 
