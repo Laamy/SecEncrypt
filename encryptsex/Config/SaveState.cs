@@ -9,6 +9,26 @@ using Newtonsoft.Json;
 
 class SaveState
 {
+    /* 
+    "playerNames": {
+        "__type": "System.Collections.Generic.Dictionary`2[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],mscorlib",
+        "value": {
+            "76561198930262816": "yeemi"
+        }
+    },
+    "timePlayed": {
+        "__type": "float",
+        "value": 6032.528
+    },
+    "dateAndTime": {
+        "__type": "string",
+        "value": "2025-05-02"
+    },
+    "teamName": {
+        "__type": "string",
+        "value": "R.E.P.O."
+    }*/
+
     public static readonly DirectoryInfo RepoSaves = new(Path.Combine(
         Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "AppData", "LocalLow"),
         "semiwork", "Repo", "saves"
@@ -135,64 +155,32 @@ class SaveState
 
     // the actual modify utils start here..
     public dynamic Root { get => _Root; }
-    public dynamic Dictionaries { get => _Root.dictionaryOfDictionaries.value; }
-    public dynamic RunStats { get => _Root.dictionaryOfDictionaries.value.runStats; }
 
-    public PlayerStats GetPlayerStats(SteamID player) => new(player, this);
+    public Value Dictionaries { get => new Value(_Root.dictionaryOfDictionaries); }
+    public RunStats RunStats { get => new(this); }
 
-    //{
-    //  "runStats": {
-    //      "level": 0,
-    //      "currency": 0,
-    //      "lives": 3,
-    //      "chargingStationCharge": 1,
-    //      "chargingStationChargeTotal": 100,
-    //      "totalHaul": 0,
-    //      "save level": 0
-    //  }
-    //}
+    public MarketPlace ItemsPurchased { get => new(this, "itemsPurchased"); }
+    public MarketPlace itemsPurchasedTotal { get => new(this, "itemsPurchasedTotal"); }
+    public MarketPlace itemsUpgradesPurchased { get => new(this, "itemsUpgradesPurchased"); }
+    public MarketPlace itemBatteryUpgrades { get => new(this, "itemBatteryUpgrades"); }
 
-    public int Level
+    public PlayerStats GetPlayer(SteamID player) => new(player, this);
+
+    public Value timePlayed
     {
-        get => RunStats.level + 1;
-        set => RunStats.level = value - 1;
+        get => new Value(_Root.timePlayed);
+        set => _Root.timePlayed = value;
     }
 
-    public int Currency
+    public Value dateAndTime
     {
-        get => RunStats.currency;
-        set => RunStats.currency = value;
+        get => new Value(_Root.dateAndTime);
+        set => _Root.dateAndTime = value;
     }
 
-    public int Lives
+    public Value teamName
     {
-        get => RunStats.lives;
-        set => RunStats.lives = value;
+        get => new Value(_Root.teamName);
+        set => _Root.teamName = value;
     }
-
-    public int ChargingStationCharge
-    {
-        get => RunStats.chargingStationCharge;
-        set => RunStats.chargingStationCharge = value;
-    }
-
-    public int ChargingStationChargeTotal
-    {
-        get => RunStats.chargingStationChargeTotal;
-        set => RunStats.chargingStationChargeTotal = value;
-    }
-
-    public int TotalHaul
-    {
-        get => RunStats.totalHaul;
-        set => RunStats.totalHaul = value;
-    }
-
-    public int SaveLevel
-    {
-        get => RunStats.saveLevel;
-        set => RunStats.saveLevel = value;
-    }
-
-    //envClone.saveRoot.dictionaryOfDictionaries.value.playerUpgradeStrength["76561198930262816"] = 30;
 }

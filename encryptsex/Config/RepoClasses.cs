@@ -1,5 +1,6 @@
 ﻿namespace encryptsex.Config;
 
+// i might make a use for this later..
 public enum itemType
 {
     drone,
@@ -17,6 +18,7 @@ public enum itemType
     pocket_cart
 }
 
+// i might make a use for this later..
 public enum emojiIcon
 {
     drone_heal,
@@ -56,12 +58,14 @@ public enum emojiIcon
     item_mine_stun
 }
 
+// i might make a use for this later..
 public enum itemSecretShopType
 {
     none,
     shop_attic
 }
 
+// i might make a use for this later..
 public enum itemVolume
 {
     small,
@@ -75,6 +79,7 @@ public enum itemVolume
     large_plus
 }
 
+// i might make a use for this later..
 public class Item
 {
     //private void OnValidate()

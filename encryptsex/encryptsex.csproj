@@ -44,12 +44,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\AESStream.cs" />
+    <Compile Include="Config\MarketPlace.cs" />
     <Compile Include="Config\PlayerStats.cs" />
     <Compile Include="Config\RepoClasses.cs" />
     <Compile Include="Config\RepoFileStream.cs" />
     <Compile Include="Config\RepoGame.cs" />
+    <Compile Include="Config\RunStats.cs" />
     <Compile Include="Config\SaveState.cs" />
     <Compile Include="Config\SteamID.cs" />
+    <Compile Include="Config\Value.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
