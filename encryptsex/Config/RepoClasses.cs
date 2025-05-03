@@ -108,4 +108,4 @@ public class Item
     public int maxPurchaseAmount = 1;
     //public Quaternion spawnRotationOffset;
     public bool physicalItem = true;
-}'
+}

@@ -15,20 +15,20 @@ class PlayerStats
 
     public int ItemsPurchased
     {
-        get => SaveState.RunStats.itemPurchased[Identifier.ID];
-        set => SaveState.RunStats.itemPurchased[Identifier.ID] = value;
+        get => SaveState.Dictionaries.itemPurchased[Identifier.ID];
+        set => SaveState.Dictionaries.itemPurchased[Identifier.ID] = value;
     }
 
     public int ItemsUpgradesPurchased
     {
-        get => SaveState.RunStats.itemsUpgradesPurchased[Identifier.ID];
-        set => SaveState.RunStats.itemsUpgradesPurchased[Identifier.ID] = value;
+        get => SaveState.Dictionaries.itemsUpgradesPurchased[Identifier.ID];
+        set => SaveState.Dictionaries.itemsUpgradesPurchased[Identifier.ID] = value;
     }
 
     public int ItemsPurchasedTotal
     {
-        get => SaveState.RunStats.itemsPurchasedTotal[Identifier.ID];
-        set => SaveState.RunStats.itemsPurchasedTotal[Identifier.ID] = value;
+        get => SaveState.Dictionaries.itemsPurchasedTotal[Identifier.ID];
+        set => SaveState.Dictionaries.itemsPurchasedTotal[Identifier.ID] = value;
     }
 
     /// <summary>
@@ -36,8 +36,8 @@ class PlayerStats
     /// </summary>
     public int Health
     {
-        get => SaveState.RunStats.playerHealth[Identifier.ID];
-        set => SaveState.RunStats.playerHealth[Identifier.ID] = value;
+        get => SaveState.Dictionaries.playerHealth[Identifier.ID];
+        set => SaveState.Dictionaries.playerHealth[Identifier.ID] = value;
     }
 
     /// <summary>
@@ -45,8 +45,8 @@ class PlayerStats
     /// </summary>
     public int HasCrown
     {
-        get => SaveState.RunStats.playerHasCrown[Identifier.ID];
-        set => SaveState.RunStats.playerHasCrown[Identifier.ID] = value;
+        get => SaveState.Dictionaries.playerHasCrown[Identifier.ID];
+        set => SaveState.Dictionaries.playerHasCrown[Identifier.ID] = value;
     }
 
     /// <summary>
@@ -76,8 +76,8 @@ class PlayerSlot
     /// </summary>
     public int SpotTaken
     {
-        get => SaveState.RunStats[$"playerInventorySpot{SlotId}Taken"][Identifier.ID];
-        set => SaveState.RunStats[$"playerInventorySpot{SlotId}Taken"][Identifier.ID] = value;
+        get => SaveState.Dictionaries[$"playerInventorySpot{SlotId}Taken"][Identifier.ID];
+        set => SaveState.Dictionaries[$"playerInventorySpot{SlotId}Taken"][Identifier.ID] = value;
     }
 
     /// <summary>
@@ -85,8 +85,8 @@ class PlayerSlot
     /// </summary>
     public int ItemID
     {
-        get => SaveState.RunStats[$"playerInventorySpot{SlotId}"][Identifier.ID];
-        set => SaveState.RunStats[$"playerInventorySpot{SlotId}"][Identifier.ID] = value;
+        get => SaveState.Dictionaries[$"playerInventorySpot{SlotId}"][Identifier.ID];
+        set => SaveState.Dictionaries[$"playerInventorySpot{SlotId}"][Identifier.ID] = value;
     }
 }
 class PlayerInventory
@@ -124,8 +124,8 @@ class PlayerUpgrades
 
     public int ItemBatteryUpgrades
     {
-        get => SaveState.RunStats.itemBatteryUpgrades[Identifier.ID];
-        set => SaveState.RunStats.itemBatteryUpgrades[Identifier.ID] = value;
+        get => SaveState.Dictionaries.itemBatteryUpgrades[Identifier.ID];
+        set => SaveState.Dictionaries.itemBatteryUpgrades[Identifier.ID] = value;
     }
 
     /// <summary>
@@ -133,8 +133,8 @@ class PlayerUpgrades
     /// </summary>
     public int Health
     {
-        get => SaveState.RunStats.playerUpgradeHealth[Identifier.ID];
-        set => SaveState.RunStats.playerUpgradeHealth[Identifier.ID] = value;
+        get => SaveState.Dictionaries.playerUpgradeHealth[Identifier.ID];
+        set => SaveState.Dictionaries.playerUpgradeHealth[Identifier.ID] = value;
     }
 
     /// <summary>
@@ -142,8 +142,8 @@ class PlayerUpgrades
     /// </summary>
     public int Stamina
     {
-        get => SaveState.RunStats.playerUpgradeStamina[Identifier.ID];
-        set => SaveState.RunStats.playerUpgradeStamina[Identifier.ID] = value;
+        get => SaveState.Dictionaries.playerUpgradeStamina[Identifier.ID];
+        set => SaveState.Dictionaries.playerUpgradeStamina[Identifier.ID] = value;
     }
 
     /// <summary>
@@ -151,8 +151,8 @@ class PlayerUpgrades
     /// </summary>
     public int ExtraJump
     {
-        get => SaveState.RunStats.playerUpgradeExtraJump[Identifier.ID];
-        set => SaveState.RunStats.playerUpgradeExtraJump[Identifier.ID] = value;
+        get => SaveState.Dictionaries.playerUpgradeExtraJump[Identifier.ID];
+        set => SaveState.Dictionaries.playerUpgradeExtraJump[Identifier.ID] = value;
     }
 
     /// <summary>
@@ -160,14 +160,14 @@ class PlayerUpgrades
     /// </summary>
     public int Launch
     {
-        get => SaveState.RunStats.playerUpgradeLaunch[Identifier.ID];
-        set => SaveState.RunStats.playerUpgradeLaunch[Identifier.ID] = value;
+        get => SaveState.Dictionaries.playerUpgradeLaunch[Identifier.ID];
+        set => SaveState.Dictionaries.playerUpgradeLaunch[Identifier.ID] = value;
     }
 
     public int MapPlayerCount
     {
-        get => SaveState.RunStats.playerUpgradeMapPlayerCount[Identifier.ID];
-        set => SaveState.RunStats.playerUpgradeMapPlayerCount[Identifier.ID] = value;
+        get => SaveState.Dictionaries.playerUpgradeMapPlayerCount[Identifier.ID];
+        set => SaveState.Dictionaries.playerUpgradeMapPlayerCount[Identifier.ID] = value;
     }
 
     /// <summary>
@@ -175,8 +175,8 @@ class PlayerUpgrades
     /// </summary>
     public int Speed
     {
-        get => SaveState.RunStats.playerUpgradeSpeed[Identifier.ID];
-        set => SaveState.RunStats.playerUpgradeSpeed[Identifier.ID] = value;
+        get => SaveState.Dictionaries.playerUpgradeSpeed[Identifier.ID];
+        set => SaveState.Dictionaries.playerUpgradeSpeed[Identifier.ID] = value;
     }
 
     /// <summary>
@@ -184,8 +184,8 @@ class PlayerUpgrades
     /// </summary>
     public int Strength
     {
-        get => SaveState.RunStats.playerUpgradeStrength[Identifier.ID];
-        set => SaveState.RunStats.playerUpgradeStrength[Identifier.ID] = value;
+        get => SaveState.Dictionaries.playerUpgradeStrength[Identifier.ID];
+        set => SaveState.Dictionaries.playerUpgradeStrength[Identifier.ID] = value;
     }
 
     /// <summary>
@@ -193,8 +193,8 @@ class PlayerUpgrades
     /// </summary>
     public int Throw
     {
-        get => SaveState.RunStats.playerUpgradeThrow[Identifier.ID];
-        set => SaveState.RunStats.playerUpgradeThrow[Identifier.ID] = value;
+        get => SaveState.Dictionaries.playerUpgradeThrow[Identifier.ID];
+        set => SaveState.Dictionaries.playerUpgradeThrow[Identifier.ID] = value;
     }
 
     /// <summary>
@@ -202,7 +202,7 @@ class PlayerUpgrades
     /// </summary>
     public int Range
     {
-        get => SaveState.RunStats.playerUpgradeRange[Identifier.ID];
-        set => SaveState.RunStats.playerUpgradeRange[Identifier.ID] = value;
+        get => SaveState.Dictionaries.playerUpgradeRange[Identifier.ID];
+        set => SaveState.Dictionaries.playerUpgradeRange[Identifier.ID] = value;
     }
 }

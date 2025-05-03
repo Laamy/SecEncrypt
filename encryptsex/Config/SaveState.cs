@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 
 class SaveState
 {
-    private static readonly DirectoryInfo RepoSaves = new(Path.Combine(
+    public static readonly DirectoryInfo RepoSaves = new(Path.Combine(
         Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "AppData", "LocalLow"),
         "semiwork", "Repo", "saves"
     ));
@@ -18,12 +18,15 @@ class SaveState
     private DirectoryInfo saveDir;
     private FileInfo saveFile;
     private RepoFileStream saveFileStream;
-    private readonly dynamic _Root;
+    private dynamic _Root;
 
     #region InternalMumbo
 
     private void LoadContent()
     {
+        if (!saveDir.Exists)
+            throw new Exception("Save directory does not exist.");
+
         foreach (var file in saveDir.GetFiles())
         {
             if (!file.Name.Contains("BACKUP"))
@@ -42,6 +45,7 @@ class SaveState
             throw new Exception("Failed to load save file.");
 
         dynamic root = JsonConvert.DeserializeObject(decryptedState);
+        _Root = root;
 
         if (root == null)
             throw new Exception("Failed to load save file.");
@@ -131,10 +135,64 @@ class SaveState
 
     // the actual modify utils start here..
     public dynamic Root { get => _Root; }
-    public dynamic Dictionaries { get => Root.dictionaryOfDictionaries.value; }
-    public dynamic RunStats { get => Dictionaries.runStats; }
+    public dynamic Dictionaries { get => _Root.dictionaryOfDictionaries.value; }
+    public dynamic RunStats { get => _Root.dictionaryOfDictionaries.value.runStats; }
 
     public PlayerStats GetPlayerStats(SteamID player) => new(player, this);
+
+    //{
+    //  "runStats": {
+    //      "level": 0,
+    //      "currency": 0,
+    //      "lives": 3,
+    //      "chargingStationCharge": 1,
+    //      "chargingStationChargeTotal": 100,
+    //      "totalHaul": 0,
+    //      "save level": 0
+    //  }
+    //}
+
+    public int Level
+    {
+        get => RunStats.level + 1;
+        set => RunStats.level = value - 1;
+    }
+
+    public int Currency
+    {
+        get => RunStats.currency;
+        set => RunStats.currency = value;
+    }
+
+    public int Lives
+    {
+        get => RunStats.lives;
+        set => RunStats.lives = value;
+    }
+
+    public int ChargingStationCharge
+    {
+        get => RunStats.chargingStationCharge;
+        set => RunStats.chargingStationCharge = value;
+    }
+
+    public int ChargingStationChargeTotal
+    {
+        get => RunStats.chargingStationChargeTotal;
+        set => RunStats.chargingStationChargeTotal = value;
+    }
+
+    public int TotalHaul
+    {
+        get => RunStats.totalHaul;
+        set => RunStats.totalHaul = value;
+    }
+
+    public int SaveLevel
+    {
+        get => RunStats.saveLevel;
+        set => RunStats.saveLevel = value;
+    }
 
     //envClone.saveRoot.dictionaryOfDictionaries.value.playerUpgradeStrength["76561198930262816"] = 30;
 }
