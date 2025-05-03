@@ -1,10 +1,13 @@
 # SecEncrypt
 
-allows you to get all the repo save files or get a save by name</br>
-also lets you decrypt and view/modify the saves content in a clean manner with autocomplete</br>
-also lets you re-encrypt and save the save files
+**SecEncrypt** lets you manage and modify game save files easily with full autocomplete support.
 
-example:
+## Features
+- Load all saves or a specific save by name  
+- Decrypt and modify save contents cleanly  
+- Re-encrypt and save your changes  
+
+## Example
 ```cs
 SaveState save = RepoGame.GetSaves()[0]; // first save in the saves folder
 
