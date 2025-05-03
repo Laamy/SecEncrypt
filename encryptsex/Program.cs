@@ -21,10 +21,10 @@ class Program
         Console.WriteLine(save.Root);
         save.RunStats.Level = 12; // so i know whhat file i modified
 
-        save.itemsPurchasedTotal.GunTranq.Count = 3;
-        save.itemsUpgradesPurchased.GunTranq.Count = 3;
+        save.ItemsPurchasedTotal.GunTranq.Count = 3;
+        save.ItemsUpgradesPurchased.GunTranq.Count = 3;
         save.ItemsPurchased.GunTranq.Count = 3;
-        save.itemBatteryUpgrades.GunTranq.Count = 3;
+        save.ItemBatteryUpgrades.GunTranq.Count = 3;
 
         save.Save();
     }

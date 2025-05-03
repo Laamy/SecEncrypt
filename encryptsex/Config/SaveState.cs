@@ -154,33 +154,70 @@ class SaveState
     #endregion
 
     // the actual modify utils start here..
+    /// <summary>
+    /// The raw root of the save file
+    /// </summary>
     public dynamic Root { get => _Root; }
 
+    /// <summary>
+    /// Game dictionaries (actual weirdos for doing this)
+    /// </summary>
     public Value Dictionaries { get => new Value(_Root.dictionaryOfDictionaries); }
+
+    /// <summary>
+    /// Contains the stats for the run (level, currency, haul, ect.)
+    /// </summary>
     public RunStats RunStats { get => new(this); }
 
+    /// <summary>
+    /// Get the items purchased by the players
+    /// </summary>
     public MarketPlace ItemsPurchased { get => new(this, "itemsPurchased"); }
-    public MarketPlace itemsPurchasedTotal { get => new(this, "itemsPurchasedTotal"); }
-    public MarketPlace itemsUpgradesPurchased { get => new(this, "itemsUpgradesPurchased"); }
-    public MarketPlace itemBatteryUpgrades { get => new(this, "itemBatteryUpgrades"); }
 
+    /// <summary>
+    /// Get the items purchased by the players in total
+    /// </summary>
+    public MarketPlace ItemsPurchasedTotal { get => new(this, "itemsPurchasedTotal"); }
+
+    /// <summary>
+    /// Get the item upgrades purchased by the players (Not sure what this is)
+    /// </summary>
+    public MarketPlace ItemsUpgradesPurchased { get => new(this, "itemsUpgradesPurchased"); }
+
+    /// <summary>
+    /// Get the items battery upgrades that are available for purchase in the game
+    /// </summary>
+    public MarketPlace ItemBatteryUpgrades { get => new(this, "itemBatteryUpgrades"); }
+
+    /// <summary>
+    /// Get the stats for a specific player
+    /// </summary>
     public PlayerStats GetPlayer(SteamID player) => new(player, this);
 
-    public Value timePlayed
+    /// <summary>
+    /// The amount of time the player has played the game in seconds
+    /// </summary>
+    public Value TimePlayed
     {
-        get => new Value(_Root.timePlayed);
+        get => new(_Root.timePlayed);
         set => _Root.timePlayed = value;
     }
 
-    public Value dateAndTime
+    /// <summary>
+    /// The date and time the save was created (format yyyy-MM-dd)
+    /// </summary>
+    public Value DateAndTime
     {
-        get => new Value(_Root.dateAndTime);
+        get => new(_Root.dateAndTime);
         set => _Root.dateAndTime = value;
     }
 
-    public Value teamName
+    /// <summary>
+    /// The name of the team (This is currently not used in the game)
+    /// </summary>
+    public Value TeamName
     {
-        get => new Value(_Root.teamName);
+        get => new(_Root.teamName);
         set => _Root.teamName = value;
     }
 }

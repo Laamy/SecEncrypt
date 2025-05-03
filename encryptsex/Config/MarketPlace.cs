@@ -74,12 +74,29 @@ class MarketPlace
         this.target = target;
     }
 
+    /// <summary>
+    /// The medium (default) cart
+    /// </summary>
     public MarketItem CartMedium => new(saveState, "Cart Medium", target);
+
+    /// <summary>
+    /// The medium (default) cart
+    /// </summary>
+    public MarketItem DefaultCart => CartMedium;
+
+    /// <summary>
+    /// A smaller variant of the default cart (Pocket cart)
+    /// </summary>
     public MarketItem CartSmall => new(saveState, "Cart Small", target);
 
+    /// <summary>
+    /// A smaller variant of the default cart (Pocket cart)
+    /// </summary>
+    public MarketItem PocketCart => CartSmall;
+    
     public MarketItem ExtractionTracker => new(saveState, "Extraction Tracker", target); // no category? wwtf is thhe repo devs doing bruh
     public MarketItem ValuableTracker => new(saveState, "Valuable Tracker", target);
-
+    
     public MarketItem DroneBattery => new(saveState, "Drone Battery", target);
     public MarketItem DroneFeather => new(saveState, "Drone Feather", target);
     public MarketItem DroneIndestructible => new(saveState, "Drone Indestructible", target);
