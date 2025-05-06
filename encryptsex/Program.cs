@@ -1,5 +1,6 @@
 ﻿namespace encryptsex;
 
+using System;
 using SecEncrypt;
 
 class Program
@@ -13,7 +14,8 @@ class Program
                 save = saveState;
         }
 
-        save.BuyAllItems();
+        Console.WriteLine(save.Root);
+
         save.Save();
     }
 }

@@ -1,6 +1,7 @@
 ﻿namespace SecEncrypt;
 
 using System;
+using System.Collections.Generic;
 
 public class PlayerStats
 {
@@ -76,7 +77,7 @@ public class PlayerStats
     public void SetMaxHealth(int health)
     {
         var neededUpgrades = (health - 100) / 20;
-        GetUpgrades().Health = neededUpgrades;
+        GetUpgrades()[PlayerUpgrade.Health].Count = neededUpgrades;
     }
 
     /// <summary>
@@ -86,7 +87,7 @@ public class PlayerStats
     /// <returns></returns>
     public int GetMaxHealth()
     {
-        return 100 + (GetUpgrades().Health * 20);
+        return 100 + (GetUpgrades()[PlayerUpgrade.Health].Count * 20);
     }
 
     #endregion
@@ -134,15 +135,45 @@ public class PlayerInventory
         SaveState = state;
     }
 
-    /// <summary>
-    /// Get the slot for an ID (1-3)
-    /// </summary>
     public PlayerSlot GetSlot(int id)
     {
         if (id < 1 || id > 3)
             throw new ArgumentOutOfRangeException(nameof(id), "Slot ID must be between 1 and 3.");
 
         return new PlayerSlot(Identifier, SaveState, id);
+    }
+}
+
+public enum PlayerUpgrade
+{
+    Health,
+    Stamina,
+    ExtraJump,
+    Launch,
+    MapPlayerCount,
+    Speed,
+    Strength,
+    Throw,
+    Range
+}
+
+public class PlayerUpgradeItem
+{
+    private SaveState saveState;
+    public SteamID Identifier;
+    private string itemName;
+
+    public PlayerUpgradeItem(SaveState saveState, SteamID identifier, string itemName)
+    {
+        this.saveState = saveState;
+        Identifier = identifier;
+        this.itemName = itemName;
+    }
+
+    public int Count
+    {
+        get => saveState.Dictionaries.value[itemName][Identifier.ID];
+        set => saveState.Dictionaries.value[itemName][Identifier.ID] = value;
     }
 }
 
@@ -157,87 +188,21 @@ public class PlayerUpgrades
         SaveState = state;
     }
 
-    public int ItemBatteryUpgrades
+    private static readonly Dictionary<PlayerUpgrade, string> UpgradeKeys = new()
     {
-        get => SaveState.Dictionaries.value.itemBatteryUpgrades[Identifier.ID];
-        set => SaveState.Dictionaries.value.itemBatteryUpgrades[Identifier.ID] = value;
-    }
+        [PlayerUpgrade.Health] = "playerUpgradeHealth",
+        [PlayerUpgrade.Stamina] = "playerUpgradeStamina",
+        [PlayerUpgrade.ExtraJump] = "playerUpgradeExtraJump",
+        [PlayerUpgrade.Launch] = "playerUpgradeLaunch",
+        [PlayerUpgrade.MapPlayerCount] = "playerUpgradeMapPlayerCount",
+        [PlayerUpgrade.Speed] = "playerUpgradeSpeed",
+        [PlayerUpgrade.Strength] = "playerUpgradeStrength",
+        [PlayerUpgrade.Throw] = "playerUpgradeThrow",
+        [PlayerUpgrade.Range] = "playerUpgradeRange"
+    };
 
-    /// <summary>
-    /// The amount of health the player has extra (100 + (Health*20))
-    /// </summary>
-    public int Health
-    {
-        get => SaveState.Dictionaries.value.playerUpgradeHealth[Identifier.ID];
-        set => SaveState.Dictionaries.value.playerUpgradeHealth[Identifier.ID] = value;
-    }
+    public PlayerUpgradeItem this[PlayerUpgrade upgrade] =>
+        new(SaveState, Identifier, UpgradeKeys[upgrade]);
 
-    /// <summary>
-    /// The amount of stamina the player has extra (100 + (Stamina*10))
-    /// </summary>
-    public int Stamina
-    {
-        get => SaveState.Dictionaries.value.playerUpgradeStamina[Identifier.ID];
-        set => SaveState.Dictionaries.value.playerUpgradeStamina[Identifier.ID] = value;
-    }
-
-    /// <summary>
-    /// The amount of extra jumps the player has (0 + ExtraJump)
-    /// </summary>
-    public int ExtraJump
-    {
-        get => SaveState.Dictionaries.value.playerUpgradeExtraJump[Identifier.ID];
-        set => SaveState.Dictionaries.value.playerUpgradeExtraJump[Identifier.ID] = value;
-    }
-
-    /// <summary>
-    /// The speed launch of the player
-    /// </summary>
-    public int Launch
-    {
-        get => SaveState.Dictionaries.value.playerUpgradeLaunch[Identifier.ID];
-        set => SaveState.Dictionaries.value.playerUpgradeLaunch[Identifier.ID] = value;
-    }
-
-    public int MapPlayerCount
-    {
-        get => SaveState.Dictionaries.value.playerUpgradeMapPlayerCount[Identifier.ID];
-        set => SaveState.Dictionaries.value.playerUpgradeMapPlayerCount[Identifier.ID] = value;
-    }
-
-    /// <summary>
-    /// More speed for the player at the cost of stamina
-    /// </summary>
-    public int Speed
-    {
-        get => SaveState.Dictionaries.value.playerUpgradeSpeed[Identifier.ID];
-        set => SaveState.Dictionaries.value.playerUpgradeSpeed[Identifier.ID] = value;
-    }
-
-    /// <summary>
-    /// The amount of strength the player has (to pick up objects)
-    /// </summary>
-    public int Strength
-    {
-        get => SaveState.Dictionaries.value.playerUpgradeStrength[Identifier.ID];
-        set => SaveState.Dictionaries.value.playerUpgradeStrength[Identifier.ID] = value;
-    }
-
-    /// <summary>
-    /// The amount of throw the player has (to throw objects)
-    /// </summary>
-    public int Throw
-    {
-        get => SaveState.Dictionaries.value.playerUpgradeThrow[Identifier.ID];
-        set => SaveState.Dictionaries.value.playerUpgradeThrow[Identifier.ID] = value;
-    }
-
-    /// <summary>
-    /// The amount of range the player has (to grab objects)
-    /// </summary>
-    public int Range
-    {
-        get => SaveState.Dictionaries.value.playerUpgradeRange[Identifier.ID];
-        set => SaveState.Dictionaries.value.playerUpgradeRange[Identifier.ID] = value;
-    }
+    public PlayerUpgradeItem Get(PlayerUpgrade itemType) => this[itemType];
 }

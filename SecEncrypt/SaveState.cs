@@ -257,4 +257,19 @@ public class SaveState
         foreach (MarketItemType itemName in Enum.GetValues(typeof(MarketItemType)))
             PurchaseItem(itemName);
     }
+
+    public void PlayerAdd(SteamID player)
+    {
+        var plyr = GetPlayer(player);
+
+        foreach (PlayerUpgrade upgrade in Enum.GetValues(typeof(PlayerUpgrade)))
+            plyr.GetUpgrades()[upgrade].Count = 0;
+
+        plyr.SetMaxHealth(100);
+        plyr.Heal();
+
+        plyr.HasCrown = 0;
+
+        // missing the playerNames indexer
+    }
 }
