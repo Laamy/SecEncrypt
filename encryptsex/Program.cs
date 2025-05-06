@@ -1,30 +1,13 @@
 ﻿namespace encryptsex;
 
-using System;
-
 using SecEncrypt;
 
 class Program
 {
     static void Main(string[] args)
     {
-        SaveState save = null;
-        foreach (var saveState in RepoGame.GetSaves())
-        {
-            if (saveState.RunStats.Level == 12)
-                save = saveState;
-        }
+        var saveState = RepoGame.GetSave("");
 
-        var plyr = SteamID.Get("76561198930262816");
-        var plyrStats = save.GetPlayer(plyr);
-
-        save.RunStats.Level = 12; // so i know whhat file i modified
-
-        save.ItemsPurchasedTotal.GunTranq.Count = 3;
-        save.ItemsUpgradesPurchased.GunTranq.Count = 3;
-        save.ItemsPurchased.GunTranq.Count = 3;
-        save.ItemBatteryUpgrades.GunTranq.Count = 3;
-
-        save.Save();
+        saveState
     }
 }

@@ -58,6 +58,38 @@ public class PlayerStats
     /// Get the player inventory
     /// </summary>
     public PlayerInventory GetInventory() => new(Identifier, SaveState);
+
+    #region Helpers
+
+    /// <summary>
+    /// Sets the players health to the maximum health (100 + (HealthUpgrades*20))
+    /// </summary>
+    public void Heal()
+    {
+        Health = GetMaxHealth();
+    }
+
+    /// <summary>
+    /// Sets the players maximum health (100 + (HealthUpgrades*20))
+    /// </summary>
+    /// <param name="health"></param>
+    public void SetMaxHealth(int health)
+    {
+        var neededUpgrades = (health - 100) / 20;
+        GetUpgrades().Health = neededUpgrades;
+    }
+
+    /// <summary>
+    /// Gets the players maximum health (100 + (HealthUpgrades*20))
+    /// </summary>
+    /// <param name="player"></param>
+    /// <returns></returns>
+    public int GetMaxHealth()
+    {
+        return 100 + (GetUpgrades().Health * 20);
+    }
+
+    #endregion
 }
 
 public class PlayerSlot

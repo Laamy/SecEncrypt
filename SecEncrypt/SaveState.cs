@@ -2,11 +2,16 @@
 #pragma warning disable IDE0025
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 
 using Newtonsoft.Json;
 
+/// <summary>
+/// similar to repo's StatsManager.
+/// lets you access everything in the save file
+/// </summary>
 public class SaveState
 {
     /* 
@@ -61,7 +66,7 @@ public class SaveState
 
         saveFileStream = new RepoFileStream(saveFile);
         string decryptedState = saveFileStream.Read();
-        if (RepoSaves == null)
+        if (string.IsNullOrEmpty(decryptedState))
             throw new Exception("Failed to load save file.");
 
         dynamic root = JsonConvert.DeserializeObject(decryptedState);
@@ -220,4 +225,20 @@ public class SaveState
         get => new(_Root.teamName);
         set => _Root.teamName = value;
     }
+
+    //public void EmptyAllBatteries()
+    //{
+    //    foreach (string key in new List<string>(this.itemStatBattery.Keys))
+    //    {
+    //        this.itemStatBattery[key] = 0;
+    //    }
+    //}
+
+    //public void BuyAllItems()
+    //{
+    //    foreach (string itemName in new List<string>(this.itemDictionary.Keys))
+    //    {
+    //        this.ItemPurchase(itemName);
+    //    }
+    //}
 }
