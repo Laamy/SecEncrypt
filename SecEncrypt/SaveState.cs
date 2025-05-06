@@ -252,11 +252,9 @@ public class SaveState
     //    }
     //}
 
-    //public void BuyAllItems()
-    //{
-    //    foreach (string itemName in new List<string>(this.itemDictionary.Keys))
-    //    {
-    //        this.ItemPurchase(itemName);
-    //    }
-    //}
+    public void BuyAllItems()
+    {
+        foreach (MarketItemType itemName in Enum.GetValues(typeof(MarketItemType)))
+            PurchaseItem(itemName);
+    }
 }

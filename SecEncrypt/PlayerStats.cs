@@ -57,7 +57,7 @@ public class PlayerStats
     /// <summary>
     /// Get the player inventory
     /// </summary>
-    public PlayerInventory GetInventory() => new(Identifier, SaveState);
+    //public PlayerInventory GetInventory() => new(Identifier, SaveState);
 
     #region Helpers
 

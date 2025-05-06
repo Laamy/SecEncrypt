@@ -13,7 +13,7 @@ class Program
                 save = saveState;
         }
 
-        save.PurchaseItem(MarketItemType.DroneIndestructible);
+        save.BuyAllItems();
         save.Save();
     }
 }
