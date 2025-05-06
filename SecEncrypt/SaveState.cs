@@ -226,6 +226,24 @@ public class SaveState
         set => _Root.teamName = value;
     }
 
+    public void RelinquishItem(MarketItemType itemName)
+    {
+        dynamic itemsPurchased = ItemsPurchased;
+
+        if (itemsPurchased[itemName].Count <= 0)
+            throw new Exception("Cannot relinquish item that has not been purchased.");
+
+        itemsPurchased[itemName].Count--;
+    }
+
+    public void PurchaseItem(MarketItemType itemName)
+    {
+        dynamic itemsPurchased = ItemsPurchased;
+        dynamic itemsPurchasedTotal = ItemsPurchasedTotal;
+        itemsPurchased[itemName].Count++;
+        itemsPurchasedTotal[itemName].Count++;
+    }
+
     //public void EmptyAllBatteries()
     //{
     //    foreach (string key in new List<string>(this.itemStatBattery.Keys))

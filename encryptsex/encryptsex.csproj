@@ -77,7 +77,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="SecEncrypt">
+    <Reference Include="SecEncrypt, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\SecEncrypt\bin\Debug\SecEncrypt.dll</HintPath>
     </Reference>
     <Reference Include="System" />

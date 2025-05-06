@@ -1,4 +1,6 @@
-﻿namespace SecEncrypt;
+﻿using System.Collections.Generic;
+
+namespace SecEncrypt;
 
 public class MarketItem
 {
@@ -17,6 +19,51 @@ public class MarketItem
         get => saveState.Dictionaries.value[target][$"Item {itemName}"];
         set => saveState.Dictionaries.value[target][$"Item {itemName}"] = value;
     }
+}
+
+public enum MarketItemType
+{
+    CartMedium,
+    DefaultCart,
+    CartSmall,
+    PocketCart,
+    ExtractionTracker,
+    ValuableTracker,
+    DroneBattery,
+    DroneFeather,
+    DroneIndestructible,
+    DroneTorque,
+    DroneZeroGravity,
+    GrenadeDuctTaped,
+    GrenadeExplosive,
+    GrenadeHuman,
+    GrenadeShockwave,
+    GrenadeStun,
+    GunHandgun,
+    GunShotgun,
+    GunTranq,
+    HealthPackLarge,
+    HealthPackMedium,
+    HealthPackSmall,
+    MeleeBaseballBat,
+    MeleeFryingPan,
+    MeleeInflatableHammer,
+    MeleeSledgeHammer,
+    MeleeSword,
+    MineExplosive,
+    MineShockwave,
+    MineStun,
+    OrbZeroGravity,
+    PowerCrystal,
+    RubberDuck,
+    UpgradeMapPlayerCount,
+    UpgradePlayerEnergy,
+    UpgradePlayerExtraJump,
+    UpgradePlayerGrabRange,
+    UpgradePlayerGrabStrength,
+    UpgradePlayerHealth,
+    UpgradePlayerSprintSpeed,
+    UpgradePlayerTumbleLaunch
 }
 
 //"itemsPurchased": {
@@ -74,71 +121,61 @@ public class MarketPlace
         this.target = target;
     }
 
-    /// <summary>
-    /// The medium (default) cart
-    /// </summary>
-    public MarketItem CartMedium => new(saveState, "Cart Medium", target);
+    public static readonly Dictionary<MarketItemType, string> Names = new()
+    {
+        [MarketItemType.CartMedium] = "Cart Medium",
+        [MarketItemType.DefaultCart] = "Cart Medium",
+        [MarketItemType.CartSmall] = "Cart Small",
+        [MarketItemType.PocketCart] = "Cart Small",
+        [MarketItemType.ExtractionTracker] = "Extraction Tracker",
+        [MarketItemType.ValuableTracker] = "Valuable Tracker",
+        [MarketItemType.DroneBattery] = "Drone Battery",
+        [MarketItemType.DroneFeather] = "Drone Feather",
+        [MarketItemType.DroneIndestructible] = "Drone Indestructible",
+        [MarketItemType.DroneTorque] = "Drone Torque",
+        [MarketItemType.DroneZeroGravity] = "Drone Zero Gravity",
+        [MarketItemType.GrenadeDuctTaped] = "Grenade Duct Taped",
+        [MarketItemType.GrenadeExplosive] = "Grenade Explosive",
+        [MarketItemType.GrenadeHuman] = "Grenade Human",
+        [MarketItemType.GrenadeShockwave] = "Grenade Shockwave",
+        [MarketItemType.GrenadeStun] = "Grenade Stun",
+        [MarketItemType.GunHandgun] = "Gun Handgun",
+        [MarketItemType.GunShotgun] = "Gun Shotgun",
+        [MarketItemType.GunTranq] = "Gun Tranq",
+        [MarketItemType.HealthPackLarge] = "Health Pack Large",
+        [MarketItemType.HealthPackMedium] = "Health Pack Medium",
+        [MarketItemType.HealthPackSmall] = "Health Pack Small",
+        [MarketItemType.MeleeBaseballBat] = "Melee Baseball Bat",
+        [MarketItemType.MeleeFryingPan] = "Melee Frying Pan",
+        [MarketItemType.MeleeInflatableHammer] = "Melee Inflatable Hammer",
+        [MarketItemType.MeleeSledgeHammer] = "Melee Sledge Hammer",
+        [MarketItemType.MeleeSword] = "Melee Sword",
+        [MarketItemType.MineExplosive] = "Mine Explosive",
+        [MarketItemType.MineShockwave] = "Mine Shockwave",
+        [MarketItemType.MineStun] = "Mine Stun",
+        [MarketItemType.OrbZeroGravity] = "Orb Zero Gravity",
+        [MarketItemType.PowerCrystal] = "Power Crystal",
+        [MarketItemType.RubberDuck] = "Rubber Duck",
+        [MarketItemType.UpgradeMapPlayerCount] = "Upgrade Map Player Count",
+        [MarketItemType.UpgradePlayerEnergy] = "Upgrade Player Energy",
+        [MarketItemType.UpgradePlayerExtraJump] = "Upgrade Player Extra Jump",
+        [MarketItemType.UpgradePlayerGrabRange] = "Upgrade Player Grab Range",
+        [MarketItemType.UpgradePlayerGrabStrength] = "Upgrade Player Grab Strength",
+        [MarketItemType.UpgradePlayerHealth] = "Upgrade Player Health",
+        [MarketItemType.UpgradePlayerSprintSpeed] = "Upgrade Player Sprint Speed",
+        [MarketItemType.UpgradePlayerTumbleLaunch] = "Upgrade Player Tumble Launch"
+    };
 
-    /// <summary>
-    /// The medium (default) cart
-    /// </summary>
-    public MarketItem DefaultCart => CartMedium;
+    public MarketItem this[MarketItemType itemType]
+    {
+        get
+        {
+            var itemName = Names[itemType];
+            return new MarketItem(saveState, itemName, target);
+        }
+    }
 
-    /// <summary>
-    /// A smaller variant of the default cart (Pocket cart)
-    /// </summary>
-    public MarketItem CartSmall => new(saveState, "Cart Small", target);
-
-    /// <summary>
-    /// A smaller variant of the default cart (Pocket cart)
-    /// </summary>
-    public MarketItem PocketCart => CartSmall;
-    
-    public MarketItem ExtractionTracker => new(saveState, "Extraction Tracker", target); // no category? wwtf is thhe repo devs doing bruh
-    public MarketItem ValuableTracker => new(saveState, "Valuable Tracker", target);
-    
-    public MarketItem DroneBattery => new(saveState, "Drone Battery", target);
-    public MarketItem DroneFeather => new(saveState, "Drone Feather", target);
-    public MarketItem DroneIndestructible => new(saveState, "Drone Indestructible", target);
-    public MarketItem DroneTorque => new(saveState, "Drone Torque", target);
-    public MarketItem DroneZeroGravity => new(saveState, "Drone Zero Gravity", target);
-
-    public MarketItem GrenadeDuctTaped => new(saveState, "Grenade Duct Taped", target);
-    public MarketItem GrenadeExplosive => new(saveState, "Grenade Explosive", target);
-    public MarketItem GrenadeHuman => new(saveState, "Grenade Human", target);
-    public MarketItem GrenadeShockwave => new(saveState, "Grenade Shockwave", target);
-    public MarketItem GrenadeStun => new(saveState, "Grenade Stun", target);
-
-    public MarketItem GunHandgun => new(saveState, "Gun Handgun", target);
-    public MarketItem GunShotgun => new(saveState, "Gun Shotgun", target);
-    public MarketItem GunTranq => new(saveState, "Gun Tranq", target);
-
-    public MarketItem HealthPackLarge => new(saveState, "Health Pack Large", target);
-    public MarketItem HealthPackMedium => new(saveState, "Health Pack Medium", target);
-    public MarketItem HealthPackSmall => new(saveState, "Health Pack Small", target);
-
-    public MarketItem MeleeBaseballBat => new(saveState, "Melee Baseball Bat", target);
-    public MarketItem MeleeFryingPan => new(saveState, "Melee Frying Pan", target);
-    public MarketItem MeleeInflatableHammer => new(saveState, "Melee Inflatable Hammer", target);
-    public MarketItem MeleeSledgeHammer => new(saveState, "Melee Sledge Hammer", target);
-    public MarketItem MeleeSword => new(saveState, "Melee Sword", target);
-
-    public MarketItem MineExplosive => new(saveState, "Mine Explosive", target);
-    public MarketItem MineShockwave => new(saveState, "Mine Shockwave", target);
-    public MarketItem MineStun => new(saveState, "Mine Stun", target);
-
-    public MarketItem OrbZeroGravity => new(saveState, "Orb Zero Gravity", target);
-    public MarketItem PowerCrystal => new(saveState, "Power Crystal", target);
-    public MarketItem RubberDuck => new(saveState, "Rubber Duck", target);
-
-    public MarketItem UpgradeMapPlayerCount => new(saveState, "Upgrade Map Player Count", target);
-    public MarketItem UpgradePlayerEnergy => new(saveState, "Upgrade Player Energy", target);
-    public MarketItem UpgradePlayerExtraJump => new(saveState, "Upgrade Player Extra Jump", target);
-    public MarketItem UpgradePlayerGrabRange => new(saveState, "Upgrade Player Grab Range", target);
-    public MarketItem UpgradePlayerGrabStrength => new(saveState, "Upgrade Player Grab Strength", target);
-    public MarketItem UpgradePlayerHealth => new(saveState, "Upgrade Player Health", target);
-    public MarketItem UpgradePlayerSprintSpeed => new(saveState, "Upgrade Player Sprint Speed", target);
-    public MarketItem UpgradePlayerTumbleLaunch => new(saveState, "Upgrade Player Tumble Launch", target);
+    public MarketItem Get(MarketItemType itemType) => this[itemType];
 }
 
 // these are most likely related to their prices in the shop but for now I wont even attempt implementing them

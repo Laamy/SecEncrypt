@@ -6,8 +6,14 @@ class Program
 {
     static void Main(string[] args)
     {
-        var saveState = RepoGame.GetSave("");
+        SaveState save = null;
+        foreach (var saveState in RepoGame.GetSaves())
+        {
+            if (saveState.RunStats.Level == 12)
+                save = saveState;
+        }
 
-        saveState
+        save.PurchaseItem(MarketItemType.DroneIndestructible);
+        save.Save();
     }
 }
